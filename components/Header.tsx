@@ -17,7 +17,7 @@ function isNavActive(pathname: string, item: (typeof navLinks)[number]) {
   if (pathname === item.href) return true
   const extra = 'activePrefix' in item ? item.activePrefix : null
   if (extra && pathname.startsWith(extra)) return true
-  if (item.href !== '/' && pathname.startsWith(`${item.href}/`)) return true
+  if (pathname.startsWith(`${item.href}/`)) return true
   return false
 }
 

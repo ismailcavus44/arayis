@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import type ReactQuillType from 'react-quill'
@@ -25,6 +25,10 @@ import { buildFaqBlockHtml, extractFaqSectionFromArticle, type EvdeBakimFaqItem 
 import 'react-quill/dist/quill.snow.css'
 
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false })
+/** Paket tipleri `ref` tanımlamaz; sınıf örneği `getEditor()` sunar. */
+const ReactQuillWithRef = ReactQuill as unknown as React.ComponentType<
+  React.ComponentProps<typeof ReactQuill> & { ref?: React.Ref<ReactQuillType> }
+>
 const CONTACT_PHONE = '+90 505 277 2628'
 const CONTACT_EMAIL = 'info@arayisik.com'
 const CONTACT_ADDRESS = 'Balıkçıoğlu iş merkezi, Korkutreis, Necatibey Cd. D:4, 06530 Çankaya/Ankara'
@@ -125,7 +129,7 @@ export default function EvdeBakimArticleEditorScreen() {
   const [featuredImageAlt, setFeaturedImageAlt] = useState('')
   const [metaTitleInput, setMetaTitleInput] = useState('')
   const [metaDescriptionInput, setMetaDescriptionInput] = useState('')
-  const quillRef = useMemo(() => ({ current: null as ReactQuillType | null }), [])
+  const quillRef = useRef<ReactQuillType | null>(null)
 
   useEffect(() => {
     let cancelled = false
@@ -565,10 +569,8 @@ export default function EvdeBakimArticleEditorScreen() {
 
         <div className="rounded-2xl border border-neutral-200/80 bg-white p-4 shadow-sm sm:p-6">
           <div className="blog-admin-editor">
-            <ReactQuill
-              ref={(instance) => {
-                quillRef.current = instance
-              }}
+            <ReactQuillWithRef
+              ref={quillRef}
               theme="snow"
               value={html}
               onChange={setHtml}
