@@ -1,4 +1,8 @@
+import Image from 'next/image'
 import { Phone, Mail, MapPin, Clock, Facebook, Twitter, Linkedin, Instagram } from 'lucide-react'
+
+const ISKUR_LEGAL_FOOTER =
+  'Türkiye İş Kurumunun 13.12.2024 tarih ve 17249050 sayılı oluru ile 1772 izin numaralı özel istihdam bürosu olarak faaliyet göstermektedir. 4904 sayılı Türkiye İş Kanunu gereğince iş arayanlardan menfaat sağlanması ve ücret alınması yasaktır. Şikayetleriniz için Türkiye İş Kurumu çalışma ve iş kurumu il müdürlüğüne/hizmet merkezine başvurabilirsiniz. ADRES: UÇARLI CD. NO:29 ÇANKAYA/ANKARA TELEFON: 0312 435 15 65'
 
 export default function Footer() {
   return (
@@ -50,11 +54,6 @@ export default function Footer() {
               <li>
                 <a href="/hizmetler" className="text-gray-300 hover:text-primary transition-colors text-sm">
                   Hizmetlerimiz
-                </a>
-              </li>
-              <li>
-                <a href="/hizmetlerimiz/evde-bakim-personeli" className="text-gray-300 hover:text-primary transition-colors text-sm">
-                  Evde Bakım Personeli
                 </a>
               </li>
               <li>
@@ -131,23 +130,21 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Alt Çizgi */}
-        <div className="border-t border-gray-700 mt-8 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-gray-300 text-sm">
-              © 2024 HR Office. Tüm hakları saklıdır.
-            </p>
-            <div className="flex space-x-6 mt-4 md:mt-0">
-              <a href="/privacy" className="text-gray-300 hover:text-primary transition-colors text-sm">
-                Gizlilik Politikası
-              </a>
-              <a href="/terms" className="text-gray-300 hover:text-primary transition-colors text-sm">
-                Kullanım Şartları
-              </a>
-              <a href="/cookies" className="text-gray-300 hover:text-primary transition-colors text-sm">
-                Çerez Politikası
-              </a>
+        {/* Alt bar — İŞKUR yasal uyarı */}
+        <div className="mt-8 border-t border-gray-700 pt-8">
+          <div className="flex w-full min-w-0 flex-col items-center justify-center gap-4 text-center md:flex-row md:justify-start md:gap-6 md:text-left">
+            <div className="shrink-0 rounded-full bg-white p-1">
+              <Image
+                src="/images/ozel-istihdam-burosu-logo.png"
+                alt="İŞKUR özel istihdam bürosu logosu"
+                width={64}
+                height={64}
+                className="h-14 w-14 shrink-0 object-contain md:h-16 md:w-16"
+              />
             </div>
+            <p className="min-w-0 max-w-full flex-1 break-words text-[10px] leading-snug text-slate-300 md:text-[11px] md:leading-normal">
+              {ISKUR_LEGAL_FOOTER}
+            </p>
           </div>
         </div>
       </div>
