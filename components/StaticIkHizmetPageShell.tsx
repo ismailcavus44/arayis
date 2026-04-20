@@ -23,7 +23,7 @@ export type StaticIkHizmetPageShellProps = {
   children?: ReactNode
 }
 
-const DEFAULT_HERO = '/images/aray-is-ik-isci-personel-temini.webp'
+const DEFAULT_HERO = '/images/aray-is-ik-sablon.png'
 
 /**
  * Evde bakım şehir detay (`hizmetlerimiz/[slug]`) ile aynı üst düzen: breadcrumb + başlık + görsel + TOC + iki sütun.

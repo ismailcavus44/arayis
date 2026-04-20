@@ -57,8 +57,7 @@ function defaultArticleHtml(
     locative: city.locative,
     locativeKi: city.locative_ki,
   }
-  const [p1, p2] = bodyParagraphs(cityObj, service)
-  return `<h2>Hizmet hakkında</h2><p>${escapeHtml(p1)}</p><p>${escapeHtml(p2)}</p>`
+  return bodyParagraphs(cityObj, service)
 }
 
 function contactSectionHtml(title: string, description: string): string {

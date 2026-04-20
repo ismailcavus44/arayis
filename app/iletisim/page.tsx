@@ -8,15 +8,15 @@ import KVKKModal from '@/components/KVKKModal'
 import { Phone, Mail, MapPin, Clock } from 'lucide-react'
 
 const fieldClass =
-  'w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-slate-900 outline-none transition-all placeholder:text-slate-400 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-sky-500'
+  'w-full rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-slate-900 outline-none transition-all placeholder:text-slate-400 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-sky-500'
 
 const labelClass = 'mb-1.5 block text-sm font-semibold text-slate-700'
 
 const segmentActive =
-  'cursor-pointer rounded-lg bg-sky-500 px-6 py-2.5 text-center text-sm font-medium text-white shadow-md transition-all duration-300'
+  'cursor-pointer rounded-lg bg-sky-500 px-5 py-2 text-center text-sm font-medium text-white shadow-md transition-all duration-300'
 
 const segmentInactive =
-  'cursor-pointer rounded-lg px-6 py-2.5 text-center text-sm font-medium text-slate-600 transition-all duration-300 hover:bg-slate-200/50 hover:text-slate-900'
+  'cursor-pointer rounded-lg px-5 py-2 text-center text-sm font-medium text-slate-600 transition-all duration-300 hover:bg-slate-200/50 hover:text-slate-900'
 
 const MAP_EMBED_SRC =
   'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d764.9128181536993!2d32.8539474696579!3d39.926819626666315!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14d34f4fdfafb767%3A0xcd7928db72f471e5!2zQVJBWS3EsMWeIMSwbnNhbiBLYXluYWtsYXLEsQ!5e0!3m2!1str!2str!4v1755079069600!5m2!1str!2str'
@@ -112,16 +112,16 @@ export default function ContactPage() {
             </div>
           </div>
 
-          <div className="mt-12 w-full">
-            <div className="w-full rounded-2xl border border-slate-100 bg-white p-8 shadow-lg md:p-10">
+          <div className="mt-8 w-full">
+            <div className="w-full rounded-2xl border border-slate-100 bg-white p-6 shadow-lg md:p-7">
               <h2 className="text-lg font-semibold text-slate-900">Mesaj gönderin</h2>
               <p className="mt-1 text-sm text-slate-600">Formu doldurun, size geri dönelim.</p>
 
-              <form className="mt-6 space-y-5">
+              <form className="mt-5 space-y-4">
                 <fieldset>
-                  <legend className="mb-3 text-sm font-semibold text-slate-700">Kimsiniz?</legend>
+                  <legend className="mb-2 text-sm font-semibold text-slate-700">Kimsiniz?</legend>
                   <div
-                    className="mb-6 inline-flex w-full rounded-xl bg-slate-100 p-1 lg:w-auto"
+                    className="mb-4 inline-flex w-full rounded-xl bg-slate-100 p-1 lg:w-auto"
                     role="radiogroup"
                     aria-label="Kullanıcı tipi"
                   >
@@ -224,8 +224,8 @@ export default function ContactPage() {
                   <textarea
                     id="message"
                     name="message"
-                    rows={5}
-                    className={`${fieldClass} min-h-[120px] resize-y`}
+                    rows={4}
+                    className={`${fieldClass} min-h-[104px] resize-y`}
                     placeholder="Mesajınız…"
                   />
                 </div>
@@ -255,7 +255,7 @@ export default function ContactPage() {
                 <button
                   type="submit"
                   disabled={!kvkkAccepted}
-                  className="w-full rounded-xl bg-sky-500 py-3.5 text-base font-bold text-white shadow-md transition-colors hover:bg-sky-600 disabled:cursor-not-allowed disabled:opacity-50"
+                  className="w-full rounded-xl bg-sky-500 py-3 text-sm font-bold text-white shadow-md transition-colors hover:bg-sky-600 disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   Gönder
                 </button>

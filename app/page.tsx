@@ -4,6 +4,7 @@ import AboutSection from '../components/AboutSection'
 import LegalTrustSection from '../components/LegalTrustSection'
 import ServicesSection from '../components/ServicesSection'
 import ProcessSection from '../components/ProcessSection'
+import HomeFaqSection from '../components/HomeFaqSection'
 import HomeLocationSection from '../components/HomeLocationSection'
 import Footer from '../components/Footer'
 import HomePageSchema from '../components/HomePageSchema'
@@ -18,6 +19,7 @@ export default function Home() {
       <LegalTrustSection />
       <ServicesSection />
       <ProcessSection />
+      <HomeFaqSection />
       <HomeLocationSection />
       <Footer />
     </main>

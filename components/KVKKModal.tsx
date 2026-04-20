@@ -107,9 +107,9 @@ export default function KVKKModal({ isOpen, onClose }: KVKKModalProps) {
             </p>
             <div className="rounded-xl border border-gray-100 bg-gray-50/70 p-4">
               <p className="text-sm leading-relaxed text-gray-600">
-                <strong>Adres:</strong> Levent Mahallesi, Büyükdere Caddesi No: 123, Kat: 5, Beşiktaş / İstanbul<br />
-                <strong>Telefon:</strong> +90 212 555 0123<br />
-                <strong>E-posta:</strong> kvkk@arayis.com
+                <strong>Adres:</strong> Balıkçıoğlu iş merkezi, Korkutreis, Necatibey Cd. D:4, 06530 Çankaya/Ankara<br />
+                <strong>Telefon:</strong> +90 505 277 2628<br />
+                <strong>E-posta:</strong> info@arayisik.com
               </p>
             </div>
           </div>

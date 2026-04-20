@@ -196,8 +196,7 @@ async function resolveArticleOrTemplate(
   service: EvdeBakimServiceKey
 ): Promise<{
   articleHtml: string | null
-  p1: string
-  p2: string
+  templateHtml: string
   featuredImageUrl: string | null
   featuredImageAlt: string | null
   metaTitleOverride: string | null
@@ -205,11 +204,10 @@ async function resolveArticleOrTemplate(
 }> {
   const pageContent = await getCityServicePageContentCached(city.key, service)
   const articleHtml = pageContent?.article_html?.trim() || null
-  const [p1, p2] = bodyParagraphs(city, service)
+  const templateHtml = bodyParagraphs(city, service)
   return {
     articleHtml,
-    p1,
-    p2,
+    templateHtml,
     featuredImageUrl: pageContent?.featured_image_url?.trim() || null,
     featuredImageAlt: pageContent?.featured_image_alt?.trim() || null,
     metaTitleOverride: pageContent?.meta_title?.trim() || null,
@@ -238,11 +236,11 @@ export default async function EvdeBakimFlatPage({ params }: Props) {
   const { city, service, slug } = parsed
   const origin = getSiteOrigin()
   const pageUrl = `${origin}/hizmetlerimiz/${slug}`
-  const { articleHtml, p1, p2, featuredImageUrl, featuredImageAlt, metaDescriptionOverride } =
+  const { articleHtml, templateHtml, featuredImageUrl, featuredImageAlt, metaDescriptionOverride } =
     await resolveArticleOrTemplate(city, service)
   const pageTitle = pageH1(city, service)
   const pageLabel = breadcrumbCurrentLabel(city, service)
-  const heroImageSrc = featuredImageUrl || '/images/aray-is-ik-isci-personel-temini.webp'
+  const heroImageSrc = featuredImageUrl || '/images/aray-is-ik-sablon.png'
   const heroImageAlt = featuredImageAlt || pageTitle
   const serviceSchemaDescription = metaDescriptionOverride || metaDescription(city, service)
   const intermediateHubUrl = `${origin}${EVDE_BAKIM_BASE}?city=${encodeURIComponent(city.key)}`
@@ -353,15 +351,14 @@ export default async function EvdeBakimFlatPage({ params }: Props) {
           <div className="mx-auto max-w-3xl">
             {articleContent ? (
               <div
-                className="evde-bakim-hizmet-hakkinda prose prose-neutral max-w-none text-gray-600 prose-headings:!my-0 prose-headings:text-gray-900 prose-p:my-0 prose-p:first-of-type:mt-0 prose-p:leading-relaxed prose-p:empty:hidden [&>:first-child]:!mt-0 [&_p:has(>br:only-child)]:hidden [&_p:has(>span:empty:only-child)]:hidden [&_span:empty]:hidden prose-ul:my-0 prose-ol:my-0 prose-li:my-0 prose-blockquote:my-0 prose-a:text-primary [&>*:last-child]:!mb-0 [&>*:last-child]:!pb-0"
+                className="evde-bakim-hizmet-hakkinda prose prose-neutral max-w-none text-gray-600 prose-headings:!my-0 prose-headings:text-gray-900 prose-h2:mt-10 prose-h2:mb-4 prose-h2:text-2xl prose-h2:font-bold prose-h2:text-slate-800 prose-p:my-0 prose-p:first-of-type:mt-0 prose-p:leading-relaxed prose-p:empty:hidden [&>:first-child]:!mt-0 [&_p:has(>br:only-child)]:hidden [&_p:has(>span:empty:only-child)]:hidden [&_span:empty]:hidden prose-ul:my-0 prose-ol:my-0 prose-li:my-0 prose-blockquote:my-0 prose-a:text-primary [&>*:last-child]:!mb-0 [&>*:last-child]:!pb-0"
                 dangerouslySetInnerHTML={{ __html: articleContent.html }}
               />
             ) : (
-              <div className="evde-bakim-hizmet-hakkinda text-gray-600 leading-relaxed">
-                <h2 className="!mt-0 !mb-0 !text-xl !font-semibold text-gray-900 sm:!text-2xl">Hizmet hakkında</h2>
-                <p className="!m-0">{p1}</p>
-                <p className="!m-0">{p2}</p>
-              </div>
+              <div
+                className="evde-bakim-hizmet-hakkinda prose prose-neutral max-w-none text-gray-600 prose-headings:!my-0 prose-headings:text-gray-900 prose-h2:mt-10 prose-h2:mb-4 prose-h2:text-2xl prose-h2:font-bold prose-h2:text-slate-800 prose-p:my-0 prose-p:first-of-type:mt-0 prose-p:leading-relaxed prose-p:empty:hidden [&>:first-child]:!mt-0 [&_p:has(>br:only-child)]:hidden [&_p:has(>span:empty:only-child)]:hidden [&_span:empty]:hidden prose-ul:my-0 prose-ol:my-0 prose-li:my-0 prose-blockquote:my-0 prose-a:text-primary [&>*:last-child]:!mb-0 [&>*:last-child]:!pb-0"
+                dangerouslySetInnerHTML={{ __html: templateHtml }}
+              />
             )}
           </div>
         </section>

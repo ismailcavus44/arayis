@@ -110,9 +110,12 @@ export default function Header() {
             </nav>
 
             <div className="hidden items-center gap-3 lg:flex">
-              <span className="rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-white shadow-[0_1px_0_rgba(0,0,0,0.06)]">
-                Aray-İş Akademi
-              </span>
+              <Link
+                href="/iletisim"
+                className="rounded-xl bg-gradient-to-r from-sky-500 to-primary px-5 py-2.5 text-sm font-semibold text-white shadow-[0_10px_26px_-14px_rgba(2,132,199,0.65)] transition-all duration-200 hover:-translate-y-0.5 hover:from-sky-600 hover:to-sky-500 hover:shadow-[0_14px_30px_-16px_rgba(2,132,199,0.75)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-300/70 focus-visible:ring-offset-2"
+              >
+                Bizi Arayın +90 505 277 26 28
+              </Link>
             </div>
 
             <button
@@ -162,9 +165,13 @@ export default function Header() {
                   )
                 })}
                 <div className="mt-2 px-1 pb-1">
-                  <span className="flex w-full items-center justify-center rounded-full bg-primary px-5 py-3 text-sm font-semibold text-white">
-                    Aray-İş Akademi
-                  </span>
+                  <Link
+                    href="/iletisim"
+                    className="flex w-full items-center justify-center rounded-xl bg-gradient-to-r from-sky-500 to-primary px-5 py-3 text-sm font-semibold text-white shadow-[0_12px_24px_-16px_rgba(2,132,199,0.7)] transition-all duration-200 hover:from-sky-600 hover:to-sky-500 hover:shadow-[0_16px_28px_-18px_rgba(2,132,199,0.75)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-300/70 focus-visible:ring-offset-2"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Bizi Arayın +90 505 277 26 28
+                  </Link>
                 </div>
               </nav>
             </div>

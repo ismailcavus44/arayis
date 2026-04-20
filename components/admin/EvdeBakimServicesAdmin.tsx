@@ -48,8 +48,8 @@ export default function EvdeBakimServicesAdmin() {
     <div className="rounded-2xl border border-slate-100/80 bg-white p-6 text-sm font-normal shadow-sm">
       <h2 className="text-lg font-medium tracking-tight text-slate-900">Hizmet sayfaları</h2>
       <p className="mt-1.5 text-xs font-normal leading-relaxed text-slate-600">
-        Yaşlı bakıcısı ve hasta bakıcısı için il sayfalarının «Hizmet hakkında» bölümünü makale olarak düzenleyin (başlıklar, paragraflar). Diğer
-        hizmetlerde şimdilik site şablonu kullanılır.
+        Yaşlı bakıcısı, hasta bakıcısı, çocuk bakıcısı ve ev yardımcısı için il sayfalarının «Hizmet hakkında» bölümünü makale olarak
+        düzenleyin (başlıklar, paragraflar).
       </p>
 
       <div className="mt-6 space-y-3">

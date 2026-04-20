@@ -6,8 +6,13 @@ const HIZMETLERIMIZ_BASE = '/hizmetlerimiz'
 export const EVDE_BAKIM_SERVICE_KEYS = ['yasli-bakicisi', 'hasta-bakicisi', 'cocuk-bakicisi', 'ev-yardimcisi'] as const
 export type EvdeBakimServiceKey = (typeof EVDE_BAKIM_SERVICE_KEYS)[number]
 
-/** Admin panel: makale editöründe yalnızca bu iki hizmet */
-export const EVDE_BAKIM_ARTICLE_EDITOR_SERVICES = ['yasli-bakicisi', 'hasta-bakicisi'] as const
+/** Admin panel: makale editöründe tüm evde bakım hizmetleri */
+export const EVDE_BAKIM_ARTICLE_EDITOR_SERVICES = [
+  'yasli-bakicisi',
+  'hasta-bakicisi',
+  'cocuk-bakicisi',
+  'ev-yardimcisi',
+] as const
 export type EvdeBakimArticleEditorServiceKey = (typeof EVDE_BAKIM_ARTICLE_EDITOR_SERVICES)[number]
 
 export function isEvdeBakimArticleEditorService(s: string): s is EvdeBakimArticleEditorServiceKey {
@@ -125,7 +130,7 @@ export function heroSubtitle(service: EvdeBakimServiceKey): string {
   return SERVICE_COPY[service].heroSubtitle
 }
 
-export function bodyParagraphs(city: EvdeBakimCity, service: EvdeBakimServiceKey): [string, string] {
+export function bodyParagraphs(city: EvdeBakimCity, service: EvdeBakimServiceKey): string {
   return SERVICE_COPY[service].body(city)
 }
 
@@ -140,7 +145,7 @@ export const SERVICE_COPY: Record<
     heroSubtitle: string
     sameCityCardTitle: (city: EvdeBakimCity) => string
     sameCityCardDescription: string
-    body: (city: EvdeBakimCity) => [string, string]
+    body: (city: EvdeBakimCity) => string
   }
 > = {
   'yasli-bakicisi': {
@@ -152,10 +157,13 @@ export const SERVICE_COPY: Record<
     heroSubtitle: 'Referans kontrollü aday eşleştirmesi ve şeffaf istihdam aracılığı süreçleri.',
     sameCityCardTitle: (c) => `${c.ad} Yaşlı Bakıcısı`,
     sameCityCardDescription: 'Yaşlı bakımında güvenilir aday eşleştirmesi ve referans süreçleri.',
-    body: (city) => [
-      `${city.locative} güvenilir ve referanslı yaşlı bakıcısı ihtiyacınızda, aday geçmişi ve referans kontrollerini titizlikle yürütüyoruz.`,
-      'Yaşlı bakıcısı personeli bulmanıza profesyonel aracılık ediyoruz; doğrudan bakım hizmeti sunmuyor, kurumsal süreçlerle en uygun eşleşmeyi hedefliyoruz.',
-    ],
+    body: (city) => `
+<p>${city.ad} genelinde, en kıymetli varlıklarınız olan büyüklerinizin bakımı için profesyonel, şefkatli ve sabırlı adayları sizlerle buluşturuyoruz. Yaşlı bakımı, sadece fiziksel bir destek değil; aynı zamanda sevgi, saygı ve empati gerektiren çok hassas bir süreçtir.</p>
+<h2>${city.ad} Yaşlı Bakıcısı Hizmetinde Neden Bizi Tercih Etmelisiniz?</h2>
+<p>Aray-İş İnsan Kaynakları olarak, ${city.ad} bölgesindeki ailelerin hassasiyetini anlıyor ve adli sicil kayıtları ile referansları titizlikle doğrulanmış profesyonellerle eşleştirme sağlıyoruz. Alzheimer, demans, yatalak hasta bakımı veya sadece günlük yaşama destek olacak refakatçi arayışınızda; İŞKUR güvencesiyle yasal, şeffaf ve güven odaklı bir danışmanlık hizmeti sunuyoruz.</p>
+<h2>${city.ad} Yaşlı Bakıcısı İletişim ve Başvuru</h2>
+<p>Büyüklerinizin kendi ev konforunda, alıştıkları düzende huzurla yaşamalarına aracılık etmek için buradayız. ${city.ad} yaşlı bakıcısı iletişim hattımız üzerinden uzman danışmanlarımıza ulaşabilir, ailenizin ihtiyaçlarına en uygun personel profili için hemen ücretsiz talep oluşturabilirsiniz.</p>
+`.trim(),
   },
   'hasta-bakicisi': {
     breadcrumbServiceName: 'Hasta Bakıcısı',
@@ -166,10 +174,13 @@ export const SERVICE_COPY: Record<
     heroSubtitle: 'Deneyimli adaylarla güvenli eşleştirme ve kontrollü yönlendirme.',
     sameCityCardTitle: (c) => `${c.ad} Hasta Bakıcısı`,
     sameCityCardDescription: 'Hasta bakımında deneyimli ve kontrollü yönlendirme.',
-    body: (city) => [
-      `${city.locative} güvenilir ve referanslı hasta bakıcısı seçiminde, adayların geçmişi ve referansları üzerinde detaylı kontroller uyguluyoruz.`,
-      'Hasta bakıcısı personeli bulmanıza profesyonel aracılık ediyoruz; tedavi ve bakım hizmetini doğrudan sunmuyor, doğru profesyonel profille sizi buluşturuyoruz.',
-    ],
+    body: (city) => `
+<p>${city.locative} güvenilir ve referanslı hasta bakıcısı seçiminde, adayların geçmişi ve referansları üzerinde detaylı kontroller uyguluyoruz.</p>
+<h2>${city.ad} Hasta Bakıcısı Hizmetinde Neden Bizi Tercih Etmelisiniz?</h2>
+<p>Hasta bakımı sürecinde hem hasta hem de aile yakınlarının psikolojik konforunu önemsiyoruz. Deneyimli, sabırlı ve referanslı adayları İŞKUR mevzuatına uygun, şeffaf bir danışmanlık modeli ile eşleştirerek güvenli bir süreç yönetiyoruz.</p>
+<h2>${city.ad} Hasta Bakıcısı İletişim ve Başvuru</h2>
+<p>İhtiyaç duyduğunuz destek için uzman ekibimizle hemen iletişime geçebilir, ${city.ad} hasta bakıcısı taleplerinizde ailenize en uygun adaylarla görüşme sürecini kısa sürede başlatabilirsiniz.</p>
+`.trim(),
   },
   'cocuk-bakicisi': {
     breadcrumbServiceName: 'Çocuk Bakıcısı',
@@ -180,10 +191,13 @@ export const SERVICE_COPY: Record<
     heroSubtitle: 'Güvenli, deneyimli ve uyumlu bakıcı adaylarıyla profesyonel eşleştirme.',
     sameCityCardTitle: (c) => `${c.ad} Çocuk Bakıcısı`,
     sameCityCardDescription: 'Çocuğunuz için titiz aday seçimi ve güven odaklı aracılık.',
-    body: (city) => [
-      `${city.locative} güvenilir ve referanslı çocuk bakıcısı ihtiyacınızda, aile beklentilerinize uygun aday taraması ve ön görüşme süreçlerini yönetiyoruz.`,
-      'Çocuk bakıcısı personeli bulmanıza profesyonel aracılık ediyoruz; bakım hizmetini doğrudan sunmuyor, en doğru profille buluşturma odağıyla çalışıyoruz.',
-    ],
+    body: (city) => `
+<p>Çocuğunuzu emanet edeceğiniz kişiyi seçmenin bir ebeveyn için dünyadaki en zor kararlardan biri olduğunu biliyoruz. ${city.ad} sınırları içerisinde, çocuğunuzun fiziksel ve zihinsel gelişimini destekleyecek, pedagojik yaklaşıma sahip ve ilk yardım bilincine sahip bakıcı adaylarını titizlikle seçiyoruz.</p>
+<h2>${city.ad} Çocuk Bakıcısı Seçiminde Güvenli Eşleştirme</h2>
+<p>Adayların sadece mesleki tecrübelerini değil, çocuklarla iletişimini, sabrını ve şefkatini de göz önünde bulunduruyoruz. ${city.ad} bölgesindeki ailelerimiz için oyun ablası, yenidoğan hemşiresi veya tam zamanlı çocuk bakıcısı ihtiyaçlarında tüm geçmiş taramaları yapılmış personellerle İŞKUR yasal güvencesi altında huzurlu bir süreç yürütüyoruz.</p>
+<h2>${city.ad} Çocuk Bakıcısı İletişim ve Randevu</h2>
+<p>Geleceğimizin teminatı olan çocuklarınız için en doğru ve güvenilir bakıcıyı bulma sürecini ertelemeyin. ${city.ad} çocuk bakıcısı iletişim sayfamızdan veya doğrudan telefon numaralarımızdan bize ulaşarak, ailenize en uygun bakıcı adaylarıyla tanışma sürecini başlatabilirsiniz.</p>
+`.trim(),
   },
   'ev-yardimcisi': {
     breadcrumbServiceName: 'Ev Yardımcısı',
@@ -194,10 +208,13 @@ export const SERVICE_COPY: Record<
     heroSubtitle: 'Düzenli ve güvenilir yardımcı adaylarıyla hızlı, kontrollü aracılık.',
     sameCityCardTitle: (c) => `${c.ad} Ev Yardımcısı`,
     sameCityCardDescription: 'Ev işlerinde referanslı ve uyumlu personel buluşturma.',
-    body: (city) => [
-      `${city.locative} güvenilir ve referanslı ev yardımcısı ihtiyacınızda, görev tanımınıza uygun aday havuzundan seçim ve ön değerlendirme sunuyoruz.`,
-      'Ev yardımcısı personeli bulmanıza profesyonel aracılık ediyoruz; iş gücü eşleştirmesini yasal çerçevede ve şeffaf adımlarla yürütüyoruz.',
-    ],
+    body: (city) => `
+<p>Yoğun iş temponuz ve günlük koşuşturmacanız içinde evinizin düzenini, hijyenini ve sıcaklığını korumak artık bir stres kaynağı olmasın. ${city.ad} bölgesinde güvenerek evinize alabileceğiniz, tecrübeli ve referanslı ev yardımcıları ile yaşam kalitenizi artırıyoruz.</p>
+<h2>${city.ad} Ev Yardımcısı Sürecinde Yasal Çözümler</h2>
+<p>Bir yabancıyı evinize kabul etmenin yarattığı güvenlik endişesinin farkındayız. Bu nedenle eşleştirmesini sağladığımız tüm adayların adli sicil kontrollerini, sağlık durumlarını ve önceki işveren referanslarını eksiksiz olarak doğruluyoruz. Gündüzlü veya yatılı çalışma modelleriyle, ailenizin yaşam rutinine en uygun personelleri İŞKUR yasal mevzuatlarına uygun sözleşmelerle evinize yönlendiriyoruz.</p>
+<h2>${city.ad} Ev Yardımcısı İletişim ve Destek Hattı</h2>
+<p>Evinize değer katacak ve günlük yükünüzü hafifletecek profesyonel bir destek almak için daha fazla beklemeyin. İhtiyaçlarınızı belirlemek ve güvenilir aday profillerimizi incelemek için ${city.ad} ev yardımcısı iletişim numaralarımızdan uzman ekibimize hemen ulaşın.</p>
+`.trim(),
   },
 }
 

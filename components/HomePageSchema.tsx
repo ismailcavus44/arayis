@@ -1,4 +1,5 @@
 import { SITE_BRAND } from '@/lib/hizmetlerimiz-silo'
+import { HOME_FAQ_ITEMS } from '@/lib/home-faq'
 import { getSiteOrigin } from '@/lib/site-origin'
 
 const ORG_NAME = `${SITE_BRAND} İnsan Kaynakları`
@@ -23,7 +24,7 @@ const ADDRESS = {
  */
 export default function HomePageSchema() {
   const origin = getSiteOrigin()
-  const schema = {
+  const organizationSchema = {
     '@context': 'https://schema.org',
     '@type': 'EmploymentAgency',
     name: ORG_NAME,
@@ -33,7 +34,25 @@ export default function HomePageSchema() {
     telephone: TELEPHONE,
     priceRange: PRICE_RANGE,
     address: ADDRESS,
-  }
+  } as const
 
-  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: HOME_FAQ_ITEMS.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.answer,
+      },
+    })),
+  } as const
+
+  return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+    </>
+  )
 }
