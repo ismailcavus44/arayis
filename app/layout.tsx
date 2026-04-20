@@ -6,6 +6,9 @@ import { sitePageTitle } from '@/lib/hizmetlerimiz-silo'
 export const metadata: Metadata = {
   title: sitePageTitle('Anasayfa'),
   description: 'Profesyonel insan kaynakları hizmetleri ile iş arayışınızda yanınızdayız',
+  verification: {
+    google: '0vRGKkKZ-G1LeCFojEoOg1AfegDqKC9Y0FbP-7kSKuo',
+  },
 }
 
 export default function RootLayout({
