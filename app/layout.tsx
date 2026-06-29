@@ -19,9 +19,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="tr">
-      <body className="font-manrope pb-24 md:pb-0">
-        {children}
-        <MobileStickyCTA />
+      <head>
+        {/* Google tag (gtag.js) */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=AW-18135854284"
           strategy="afterInteractive"
@@ -34,6 +33,10 @@ export default function RootLayout({
             gtag('config', 'AW-18135854284');
           `}
         </Script>
+      </head>
+      <body className="font-manrope pb-24 md:pb-0">
+        {children}
+        <MobileStickyCTA />
       </body>
     </html>
   )
