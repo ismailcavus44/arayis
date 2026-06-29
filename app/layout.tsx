@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Script from 'next/script'
 import './globals.css'
 import MobileStickyCTA from '@/components/MobileStickyCTA'
 import { sitePageTitle } from '@/lib/hizmetlerimiz-silo'
@@ -21,6 +22,18 @@ export default function RootLayout({
       <body className="font-manrope pb-24 md:pb-0">
         {children}
         <MobileStickyCTA />
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=AW-18135854284"
+          strategy="afterInteractive"
+        />
+        <Script id="google-ads" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'AW-18135854284');
+          `}
+        </Script>
       </body>
     </html>
   )
